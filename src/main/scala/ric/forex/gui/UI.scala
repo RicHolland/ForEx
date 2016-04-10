@@ -16,7 +16,9 @@ class UI extends MainFrame {
     contents += currSelect
   }
 
-  val amount = new TextField
+  val amount = new TextField{
+    font = new Font("Arial", 1, 22)
+  }
   val setAmount = new Button("Set Amount")
   val amountLine = new BoxPanel(Orientation.Horizontal) {
     contents += amount
@@ -27,6 +29,7 @@ class UI extends MainFrame {
   val results = new TextArea {
     rows = 1
     editable = false
+    font = new Font("Arial", 1, 22  )
   }
 
   contents = new BoxPanel(Orientation.Vertical) {
