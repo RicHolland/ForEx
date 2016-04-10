@@ -6,6 +6,41 @@ import scala.util.Try
 
 class Rates(val rates: Map[String, Double]){
 
+    def getSym(code: String): Option[String] = {
+        val symbols = Map[String, String]("AUD" -> "$",
+        	"BGN" -> "лв",
+        	"BRL" -> "R$",
+        	"CAD" -> "$",
+        	"CHF" -> "Fr.",
+        	"CNY" -> "¥",
+        	"CZK" -> "Kč",
+        	"DKK" -> "kr",
+        	"EUR" -> "€",
+        	"HKD" -> "$",
+        	"HRK" -> "kn",
+        	"HUF" -> "Ft",
+        	"IDR" -> "Rp",
+        	"ILS" -> "₪",
+        	"INR" -> "₹",
+        	"JPY" -> "¥",
+        	"KRW" -> "₩",
+        	"MXN" -> "$",
+        	"MYR" -> "RM",
+        	"NOK" -> "kr",
+        	"NZD" -> "$",
+        	"PHP" -> "₱",
+        	"PLN" -> "zł",
+        	"RON" -> "lei",
+        	"RUB" -> "₽",
+        	"SEK" -> "kr",
+        	"SGD" -> "$",
+        	"THB" -> "฿",
+        	"TRY" -> "₺",
+        	"USD" -> "$",
+        	"ZAR" -> "R")
+        symbols.get(code.toUpperCase)
+    }
+
     def getRate(code: String): Option[Double] = {
         this.rates.get(code.toUpperCase)
     }

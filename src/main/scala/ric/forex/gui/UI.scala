@@ -53,10 +53,10 @@ class UI extends MainFrame {
     val rateCode = currSelect.selection.item
     if (fromGBP) {
       val num = (amount.text.toDouble) * (rates.getRate(rateCode).getOrElse(0.0))
-      results.text = num.toString + " " + rateCode
+      results.text = num.toString + " " + rateCode + "(" + rates.getSym(rateCode).getOrElse("") + ")"
     } else {
       val num2 = (amount.text.toDouble) / (rates.getRate(rateCode).get)
-      results.text = num2.toString + " GBP"
+      results.text = num2.toString + " GBP(£)"
     }
   }
 }
