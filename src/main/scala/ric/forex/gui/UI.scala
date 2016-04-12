@@ -2,6 +2,7 @@ package ric.forex.gui
 
 import scala.swing._
 import scala.swing.event._
+import scala.math.BigDecimal.RoundingMode
 import ric.forex.backend.Rates
 
 class UI extends MainFrame {
@@ -52,11 +53,11 @@ class UI extends MainFrame {
     }
     val rateCode = currSelect.selection.item
     if (fromGBP) {
-      val num = (amount.text.toDouble) * (rates.getRate(rateCode).getOrElse(0.0))
-      results.text = num.toString + " " + rateCode + "(" + rates.getSym(rateCode).getOrElse("") + ")"
+      val num = BigDecimal(amount.text) * BigDecimal(rates.getRate(rateCode).getOrElse(0.0).toString)
+      results.text = num.setScale(2, RoundingMode.HALF_UP).toString + " " + rateCode + "(" + rates.getSym(rateCode).getOrElse("") + ")"
     } else {
-      val num2 = (amount.text.toDouble) / (rates.getRate(rateCode).get)
-      results.text = num2.toString + " GBP(£)"
+      val num2 = BigDecimal(amount.text) / BigDecimal(rates.getRate(rateCode).get.toString)
+      results.text = num2.setScale(2, RoundingMode.HALF_UP).toString + " GBP(£)"
     }
   }
 }
